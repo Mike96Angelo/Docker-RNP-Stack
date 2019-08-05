@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  db-migrate:
+    build:
+      context: ./services/db/migrate
+    env_file:
+      - ENV
+    volumes:
+      - ./services/db/migrations:/migrations
+    depends_on:
+      - db

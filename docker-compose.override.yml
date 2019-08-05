@@ -1,0 +1,6 @@
+version: "3.7"
+
+services:
+  db:
+    ports:
+      - "54320:5432"
