@@ -1,6 +1,8 @@
 FROM node:10.16.1
+WORKDIR /app
+
 RUN npm install -g @urbica/pg-migrate@1.1.0
 
-COPY ./bin /pg-migrate
-WORKDIR /pg-migrate
-ENTRYPOINT [ "bash", "run-pg-migrate.sh" ]
+COPY ./bin .bin
+
+ENTRYPOINT [ "bash", "./bin/run-pg-migrate.sh" ]
