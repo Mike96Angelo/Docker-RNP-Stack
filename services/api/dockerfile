@@ -1,0 +1,31 @@
+# Base
+FROM node:10.16.1 as base
+WORKDIR /app
+COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
+
+# Build
+FROM base as build
+WORKDIR /app
+
+RUN npm ci
+
+COPY ./tsconfig.json ./tsconfig.json
+COPY ./src ./src
+RUN npx tsc
+
+# Production
+FROM base as prod
+WORKDIR /app
+
+RUN npm ci --only=production
+
+COPY --from=build /app/dist /app/dist
+
+CMD [ "node", "dist" ]
+
+# Development
+FROM build as dev
+WORKDIR /app
+
+CMD [ "npx", "ts-node-dev", "--respawn", "--transpileOnly", "./src" ]

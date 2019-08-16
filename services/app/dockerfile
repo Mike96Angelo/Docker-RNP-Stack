@@ -1,0 +1,30 @@
+# Base
+FROM node:10.16.1 AS base
+WORKDIR /app
+
+COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
+
+# Build
+FROM base AS build
+WORKDIR /app
+
+RUN npm ci
+
+COPY ./tsconfig.json ./tsconfig.json
+COPY ./webpack.config.js ./webpack.config.js
+COPY ./src ./src
+RUN npx webpack --mode production
+
+# Production
+FROM nginx:stable as prod
+WORKDIR /app
+
+COPY --from=build /app/dist /app/dist
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+# Development
+FROM build as dev
+WORKDIR /app
+
+CMD [ "npx", "webpack-dev-server" ]

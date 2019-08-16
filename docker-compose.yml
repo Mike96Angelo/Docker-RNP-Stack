@@ -1,6 +1,28 @@
 version: "3.7"
 
 services:
+  app:
+    build:
+      context: ./services/app
+      target: prod
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./services/api
+      target: prod
+    restart: always
+    env_file:
+      - ENV
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
   db:
     image: postgres:11.4
     restart: always
@@ -8,5 +30,6 @@ services:
       - ENV
     volumes:
       - data_db:/var/lib/postgresql/data
+
 volumes:
   data_db:
