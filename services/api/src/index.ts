@@ -1,16 +1,15 @@
-import * as os from "os";
 import * as Hapi from "@hapi/hapi";
-import { Pool } from "pg";
+// import { Pool } from "pg";
 
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.POSTGRES_USER,
-  database: process.env.POSTGRES_DB,
-  password: process.env.POSTGRES_PASSWORD,
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000
-});
+// const pool = new Pool({
+//   host: process.env.DB_HOST,
+//   user: process.env.POSTGRES_USER,
+//   database: process.env.POSTGRES_DB,
+//   password: process.env.POSTGRES_PASSWORD,
+//   max: 20,
+//   idleTimeoutMillis: 30000,
+//   connectionTimeoutMillis: 2000
+// });
 
 const init = async () => {
   const server = new Hapi.Server({
@@ -22,15 +21,7 @@ const init = async () => {
     method: "GET",
     path: "/",
     handler: async (request, h) => {
-      const users = pool.query("SELECT * from users", []);
-      return "users";
-    }
-  });
-  server.route({
-    method: "GET",
-    path: "/host",
-    handler: async (request, h) => {
-      return os.hostname();
+      return "Hello, World";
     }
   });
 
