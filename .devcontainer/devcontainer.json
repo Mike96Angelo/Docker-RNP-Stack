@@ -1,0 +1,24 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
+// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/docker-in-docker-compose
+{
+  "name": "Docker in Docker Compose - NodeJS",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "docker-in-docker",
+  "workspaceFolder": "/workspace",
+
+  // Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+  // "shutdownAction": "none",
+
+  "postCreateCommand": "npm install",
+
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "esbenp.prettier-vscode"
+  ],
+  "settings": {
+    "remote.extensionKind": {
+      "ms-azuretools.vscode-docker": "workspace"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import * as Hapi from "@hapi/hapi";
+import * as Hapi from '@hapi/hapi'
 // import { Pool } from "pg";
 
 // const pool = new Pool({
@@ -14,24 +14,24 @@ import * as Hapi from "@hapi/hapi";
 const init = async () => {
   const server = new Hapi.Server({
     port: 3001,
-    host: "0.0.0.0"
-  });
+    host: '0.0.0.0',
+  })
 
   server.route({
-    method: "GET",
-    path: "/",
+    method: 'GET',
+    path: '/',
     handler: async (request, h) => {
-      return "Hello, World";
-    }
-  });
+      return 'Hello, World'
+    },
+  })
 
-  await server.start();
-  console.log("Server running on %s", server.info.uri);
-};
+  await server.start()
+  console.log('Server running on %s', server.info.uri)
+}
 
-process.on("unhandledRejection", err => {
-  console.log(err);
-  process.exit(1);
-});
+process.on('unhandledRejection', (err) => {
+  console.log(err)
+  process.exit(1)
+})
 
-init();
+init()
