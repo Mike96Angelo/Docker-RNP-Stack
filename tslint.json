@@ -1,5 +1,5 @@
 {
-  "defaultSeverity": "warning",
+  "defaultSeverity": "error",
   "extends": [
     "tslint:recommended",
     "tslint-react",
@@ -32,7 +32,6 @@
     },
     "jsx-boolean-value": {
       "options": "never"
-    },
-    "jsx-no-lambda": false
+    }
   }
 }
