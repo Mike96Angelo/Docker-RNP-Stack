@@ -4,28 +4,28 @@ WORKDIR /app
 COPY ./package.json ./package.json
 COPY ./package-lock.json ./package-lock.json
 
-# Build
-FROM base as build
+# Source
+FROM base as source
 WORKDIR /app
-
 RUN npm ci
-
 COPY ./tsconfig.json ./tsconfig.json
 COPY ./src ./src
+
+# Development
+FROM source as dev
+WORKDIR /app
+
+CMD [ "npx", "ts-node-dev", "--respawn", "--transpileOnly", "./src" ]
+
+# Build
+FROM source as build
+WORKDIR /app
 RUN npx tsc
 
 # Production
 FROM base as prod
 WORKDIR /app
-
 RUN npm ci --only=production
-
 COPY --from=build /app/dist /app/dist
 
 CMD [ "node", "dist" ]
-
-# Development
-FROM build as dev
-WORKDIR /app
-
-CMD [ "npx", "ts-node-dev", "--respawn", "--transpileOnly", "./src" ]
