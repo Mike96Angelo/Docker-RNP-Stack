@@ -3,16 +3,22 @@ version: '3.7'
 services:
   app:
     build:
-      target: dev
+      target: 'dev'
     volumes:
       - './services/app:/app'
 
   api:
     build:
-      target: dev
+      target: 'dev'
     volumes:
       - './services/api:/app'
+      - 'ts-cache:/app-cache/ts-cache'
+    ports:
+      - '9229:9229'
 
   db:
     ports:
       - '54320:5432'
+
+volumes:
+  ts-cache:

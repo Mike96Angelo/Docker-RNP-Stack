@@ -14,8 +14,9 @@ COPY ./src ./src
 # Development
 FROM source as dev
 WORKDIR /app
+COPY ./bin ./bin
 
-CMD [ "npx", "ts-node-dev", "--respawn", "--transpileOnly", "./src" ]
+CMD ./bin/start-dev.sh
 
 # Build
 FROM source as build
@@ -26,6 +27,7 @@ RUN npx tsc
 FROM base as prod
 WORKDIR /app
 RUN npm ci --only=production
+COPY ./bin ./bin
 COPY --from=build /app/dist /app/dist
 
-CMD [ "node", "dist" ]
+CMD ./bin/start-prod.sh
