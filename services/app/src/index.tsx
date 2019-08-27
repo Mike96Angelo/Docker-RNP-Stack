@@ -1,21 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import './index.scss'
+import registerServiceWorker from './registerServiceWorker'
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then((registration) => {
-        // tslint:disable-next-line: no-console
-        console.log('SW registered: ', registration)
-      })
-      .catch((registrationError) => {
-        // tslint:disable-next-line: no-console
-        console.log('SW registration failed: ', registrationError)
-      })
-  })
-}
+registerServiceWorker()
 
 class App extends React.Component {
   render() {

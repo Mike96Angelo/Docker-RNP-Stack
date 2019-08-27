@@ -8,6 +8,9 @@ module.exports = {
     app: './src/index.tsx',
     sw: './src/service-worker.ts',
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -31,12 +34,11 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+      excludeChunks: ['sw'],
     }),
     new WorkboxPlugin.InjectManifest({
       swSrc: 'sw.bundle.js',
-      // entry: './src/service-worker.ts',
       swDest: 'service-worker.js',
-      importWorkboxFrom: 'local',
       excludeChunks: ['sw'],
     }),
   ],
