@@ -22,7 +22,7 @@ self.addEventListener('push', (event) => {
   }
 
   // tslint:disable-next-line: no-console
-  console.log('hello, form push notification')
+  console.log('hello, from push notification')
 
   event.waitUntil(self.registration.showNotification(title, options))
 })
