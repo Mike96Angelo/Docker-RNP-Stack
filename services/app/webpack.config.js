@@ -1,8 +1,13 @@
 const path = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: {
+    app: './src/index.tsx',
+    sw: './src/service-worker.ts',
+  },
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -23,12 +28,20 @@ module.exports = {
   },
   mode: 'development',
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: 'sw.bundle.js',
+      // entry: './src/service-worker.ts',
+      swDest: 'service-worker.js',
+      importWorkboxFrom: 'local',
+      excludeChunks: ['sw'],
+    }),
   ],
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
