@@ -13,13 +13,13 @@ import * as Hapi from '@hapi/hapi'
 
 const init = async () => {
   const server = new Hapi.Server({
-    port: 3001,
+    port: 80,
     host: '0.0.0.0',
   })
 
   server.route({
     method: 'GET',
-    path: '/',
+    path: '/api',
     handler: async (request, h) => {
       return 'Hello, World'
     },

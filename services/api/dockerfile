@@ -1,31 +1,18 @@
 # Base
-FROM node:10.16.1 as base
+FROM node:10.16.1-alpine as base
 WORKDIR /app
-COPY ./package.json ./package.json
-COPY ./package-lock.json ./package-lock.json
+COPY ./package*.json ./
 
-# Source
-FROM base as source
-WORKDIR /app
+# Build
+FROM base as build
 RUN npm ci
 COPY ./tsconfig.json ./tsconfig.json
 COPY ./src ./src
-
-# Development
-FROM source as dev
-WORKDIR /app
 COPY ./bin ./bin
-
-CMD ./bin/start-dev.sh
-
-# Build
-FROM source as build
-WORKDIR /app
 RUN npx tsc
 
 # Production
 FROM base as prod
-WORKDIR /app
 RUN npm ci --only=production
 COPY ./bin ./bin
 COPY --from=build /app/dist /app/dist

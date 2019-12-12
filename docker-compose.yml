@@ -1,15 +1,19 @@
 version: '3.7'
 
 services:
+  reverse-proxy:
+    build:
+      context: ./services/reverse-proxy
+    depends_on:
+      - app
+      - api
+    restart: always
+
   app:
     build:
       context: ./services/app
       target: prod
     restart: always
-    ports:
-      - '3000:3000'
-    depends_on:
-      - api
 
   api:
     build:
@@ -18,8 +22,6 @@ services:
     restart: always
     env_file:
       - ENV
-    ports:
-      - '3001:3001'
     depends_on:
       - db
 

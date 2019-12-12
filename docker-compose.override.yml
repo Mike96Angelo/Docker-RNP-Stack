@@ -1,24 +1,31 @@
 version: '3.7'
 
 services:
+  reverse-proxy:
+    ports:
+      - '8080:80'
+    volumes:
+      - './services/reverse-proxy/nginx.conf:/etc/nginx/conf.d/default.conf'
   app:
     build:
-      target: 'dev'
+      target: 'build'
+    command: './bin/start-dev.sh'
     volumes:
       - './services/app:/app'
 
   api:
     build:
-      target: 'dev'
+      target: 'build'
+    command: './bin/start-dev.sh'
     volumes:
       - './services/api:/app'
-      - 'ts-cache:/app-cache/ts-cache'
-    ports:
-      - '9229:9229'
+      - 'ts-cache-api:/app-cache/ts-cache'
+    # ports:
+    #   - '9229:9229'
 
   db:
-    ports:
-      - '54320:5432'
+    # ports:
+    #   - '54320:5432'
 
 volumes:
-  ts-cache:
+  ts-cache-api:

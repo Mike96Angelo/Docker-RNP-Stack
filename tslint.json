@@ -30,6 +30,7 @@
         "allow-leading-underscore"
       ]
     },
+    "strict-boolean-expressions": true,
     "jsx-boolean-value": {
       "options": "never"
     }
