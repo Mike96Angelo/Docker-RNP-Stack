@@ -20,12 +20,14 @@ services:
     volumes:
       - './services/api:/app'
       - 'ts-cache-api:/app-cache/ts-cache'
-    # ports:
-    #   - '9229:9229'
+    ports:
+      # debug port
+      - '9229:9229'
 
   db:
-    # ports:
-    #   - '54320:5432'
+    ports:
+      # Postgres db port
+      - '54320:5432'
 
 volumes:
   ts-cache-api:
