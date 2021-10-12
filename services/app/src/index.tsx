@@ -1,9 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import './index.scss'
-import registerServiceWorker from './registerServiceWorker'
+// import registerServiceWorker from './registerServiceWorker'
 
-registerServiceWorker()
+// registerServiceWorker()
 
 class App extends React.Component {
   render() {

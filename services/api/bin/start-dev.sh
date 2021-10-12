@@ -4,7 +4,7 @@ set -ex
 npx ts-node-dev \
   --cache-directory /app-cache/ts-cache \
   --respawn \
-  --transpileOnly \
+  --transpile-only \
   --inspect=0.0.0.0:9229 \
   /app/src
 

@@ -36,10 +36,11 @@ module.exports = {
       template: 'src/index.html',
       excludeChunks: ['sw'],
     }),
-    new WorkboxPlugin.InjectManifest({
-      swSrc: 'sw.bundle.js',
-      swDest: 'service-worker.js',
-      excludeChunks: ['sw'],
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
     }),
   ],
   output: {
@@ -48,10 +49,11 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    clientLogLevel: 'warn',
     host: '0.0.0.0',
-    port: 80,
-    overlay: true,
-    public: 'localhost:8080',
+    port: process.env.PORT ?? 80,
+    client: {
+      logging: 'warn',
+      overlay: true,
+    },
   },
 }

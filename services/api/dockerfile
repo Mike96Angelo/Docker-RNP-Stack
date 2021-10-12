@@ -1,5 +1,5 @@
 # Base
-FROM node:10.16.1-alpine as base
+FROM node:14.18.0-alpine as base
 WORKDIR /app
 COPY ./package*.json ./
 

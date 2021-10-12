@@ -11,14 +11,14 @@ services:
       target: 'build'
     command: './bin/start-dev.sh'
     volumes:
-      - './services/app:/app'
+      - './services/app/src:/app/src'
 
   api:
     build:
       target: 'build'
     command: './bin/start-dev.sh'
     volumes:
-      - './services/api:/app'
+      - './services/api/src:/app/src'
       - 'ts-cache-api:/app-cache/ts-cache'
     ports:
       # debug port
