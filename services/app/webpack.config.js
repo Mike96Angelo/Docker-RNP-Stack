@@ -54,6 +54,7 @@ module.exports = {
     client: {
       logging: 'warn',
       overlay: true,
+      webSocketURL: 'ws://0.0.0.0:8080/ws',
     },
   },
 }
