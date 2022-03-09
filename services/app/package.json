@@ -8,19 +8,17 @@
   },
   "author": "",
   "license": "PRIVATE",
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
   "devDependencies": {
-    "@types/react": "^17.0.28",
-    "@types/react-dom": "^17.0.9",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.13",
     "@types/workbox-sw": "^4.3.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.4.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.0",
     "ts-loader": "^9.2.6",
