@@ -1,9 +1,9 @@
-export default null
-declare const workbox: typeof import('workbox-sw')
-declare var self: ServiceWorkerGlobalScope
+export default null;
+declare const workbox: typeof import('workbox-sw');
+declare let self: ServiceWorkerGlobalScope;
 
 // tslint:disable-next-line: no-console
-console.log('Hello, from service-worker')
+console.log('Hello, from service-worker');
 
 // self.addEventListener('push', (event) => {
 //   const title = 'Get Started With Workbox'

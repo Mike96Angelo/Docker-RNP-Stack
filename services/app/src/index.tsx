@@ -1,14 +1,14 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import './index.scss'
-// import registerServiceWorker from './registerServiceWorker'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import './index.scss';
+// import registerServiceWorker from './registerServiceWorker';
 
-// registerServiceWorker()
+// registerServiceWorker();
 
 class App extends React.Component {
   render() {
-    return <div className="app">Hello, World</div>
+    return <div className="app">Hello, World</div>;
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'));
